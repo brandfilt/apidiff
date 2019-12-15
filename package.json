@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Command line program for diffing API calls",
   "main": "index.js",
+  "bin": "./index.js",
   "scripts": {
     "test": "test"
   },
@@ -15,6 +16,8 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^4.0.1",
-    "jsondiffpatch": "^0.3.11"
+    "jsondiffpatch": "^0.3.11",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.8"
   }
 }
