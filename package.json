@@ -1,5 +1,5 @@
 {
-  "name": "apidiff",
+  "name": "@brandfilt/apidiff",
   "version": "0.0.1",
   "description": "Command line program for diffing API calls",
   "main": "index.js",
@@ -7,13 +7,17 @@
   "scripts": {
     "test": "test"
   },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/brandfilt/apidiff.git"
+  },
   "keywords": [
     "diff",
     "json",
     "api"
   ],
   "author": "Juhana Jauhiainen",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "commander": "^4.0.1",
     "jsondiffpatch": "^0.3.11",
