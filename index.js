@@ -1,22 +1,23 @@
 #!/usr/bin/env node
-const https = require('https');
-const fs = require('fs');
 const rp = require('request-promise-native');
+const _ = require('lodash');
 
 const program = require('commander');
 const jsondiffpatch = require('jsondiffpatch')
+
 
 async function diff(url1, url2) {
     try {
         const result1 = await rp(url1);
         const result2 = await rp(url2);
 
-        const jsonDiff = jsondiffpatch.diff(JSON.parse(result1), JSON.parse(result2));
-        jsondiffpatch.console.log(jsonDiff);
+        return jsondiffpatch.diff(JSON.parse(result1), JSON.parse(result2));
     } catch (error) {
         console.log(error);
         process.exit(1);
     }
+
+    return null;
 }
 
 program
@@ -30,8 +31,14 @@ program
             return;
         }
 
-        setInterval(() => {
-            diff(env.args[0], env.args[1]);
+        let previousDiff = null;
+        setInterval(async () => {
+            const newDiff = await diff(env.args[0], env.args[1]);
+            if (!_.isEqual(newDiff, previousDiff)) {
+                jsondiffpatch.console.log(newDiff);
+                previousDiff = newDiff;
+            }
+
         }, interval);
     })
     .parse(process.argv);
