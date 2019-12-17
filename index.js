@@ -14,7 +14,6 @@ async function diff(url1, url2) {
         return jsondiffpatch.diff(JSON.parse(result1), JSON.parse(result2));
     } catch (error) {
         console.log(error);
-        process.exit(1);
     }
 
     return null;
